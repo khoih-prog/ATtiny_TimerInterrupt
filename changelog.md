@@ -9,12 +9,18 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+  * [Release v1.0.1](#release-v101)
   * [Initial Release v1.0.0](#initial-release-v100)
 
 ---
 ---
 
 ## Changelog
+
+### Initial Release v1.0.1
+
+1. Fix bug giving error when using TCB0 (`USE_TIMER_0 == true`)
+2. Default to use TCB0 for boards having only 1 TCB Timer, such as `ATtiny817`, `ATtiny807`
 
 ### Initial Release v1.0.0
 

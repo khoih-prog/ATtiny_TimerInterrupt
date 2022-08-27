@@ -12,11 +12,12 @@
   Therefore, their executions are not blocked by bad-behaving functions / tasks.
   This important feature is absolutely necessary for mission-critical tasks.
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K.Hoang      27/08/2022 Initial coding to support AVR ATtiny (ATtiny3217, etc.) using megaTinyCore
+  1.0.1   K.Hoang      27/08/2022 Fix TCB0 disable bug
 ****************************************************************************************************************************/
 
 #pragma once
@@ -194,8 +195,8 @@ bool TimerInterrupt::setFrequency(const float& frequency, timer_callback_p callb
   float frequencyLimit = frequency * 17179.840;
 
   // Limit frequency to larger than (0.00372529 / 64) Hz or interval 17179.840s / 17179840 ms to avoid uint32_t overflow
-  if ((_timer <= 0) || (callback == NULL) || ((frequencyLimit) < 1) )
-  {   
+  if ((_timer < 0) || (callback == NULL) || ((frequencyLimit) < 1) )
+  {    	
     return false;
   }
   else      

@@ -35,8 +35,8 @@
 #define USING_250KHZ          false         // Not supported now
 
 // Try to use RTC, TCA0 or TCD0 for millis()
-#define USE_TIMER_0           false         // Check if used by millis(), Servo or tone()
-#define USE_TIMER_1           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_0           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_1           false         // Check if used by millis(), Servo or tone()
 
 #if USE_TIMER_0
   #define CurrentTimer   ITimer0

@@ -30,13 +30,13 @@
 // Select USING_HALF_CLOCK      == true for  10/ 8MHz to Timer TCBx => shorter timer, but better accuracy
 // Select USING_250KHZ          == true for 250KHz to Timer TCBx => longer timer,  but worse  accuracy
 // Not select for default 250KHz to Timer TCBx => longer timer,  but worse accuracy
-#define USING_FULL_CLOCK      false
-#define USING_HALF_CLOCK      true
+#define USING_FULL_CLOCK      true
+#define USING_HALF_CLOCK      false
 #define USING_250KHZ          false         // Not supported now
 
 // Try to use RTC, TCA0 or TCD0 for millis()
-#define USE_TIMER_0           false         // Check if used by millis(), Servo or tone()
-#define USE_TIMER_1           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_0           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_1           false         // Check if used by millis(), Servo or tone()
 
 #if USE_TIMER_0
   #define CurrentTimer   ITimer0
