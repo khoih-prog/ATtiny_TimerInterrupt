@@ -1,0 +1,30 @@
+{
+  "name": "ATtiny_TimerInterrupt",
+  "version": "1.0.0",
+  "keywords": "timer, interrupt, isr, isr-based, timing, control, hardware-timer, mission-critical, accuracy, megaavr, avr-attiny, attiny, megatinycore, megatiny-core, attiny-timerinterrupt, tcb-timers",
+  "description": "This library enables you to use Interrupt from Hardware Timers on Arduino AVR ATtiny-based boards (ATtiny3217, etc.) using megaTinyCore. These ATtiny Hardware Timers, using Interrupt, still work even if other functions are blocking. Moreover, they are much more precise (certainly depending on clock frequency accuracy) than other software timers using millis() or micros(). That is mandatory if you need to measure some data requiring better accuracy. It now supports 16 ISR-based Timers, while consuming only 1 Hardware Timer. Timers interval is very long (ulong millisecs). The most important feature is they are ISR-based Timers. Therefore, their executions are not blocked by bad-behaving functions or tasks. This important feature is absolutely necessary for mission-critical tasks",
+  "authors":
+  {
+    "name":  "Khoi Hoang",
+    "url":   "https://github.com/khoih-prog",
+    "maintainer": true
+  },  
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/khoih-prog/ATtiny_TimerInterrupt"
+  },
+  "homepage": "https://github.com/khoih-prog/ATtiny_TimerInterrupt",
+  "export": {
+    "exclude": [
+      "linux",
+      "extras",
+      "tests"
+    ]
+  },
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms":  ["megaavr"],
+  "examples": "examples/*/*/*.ino",
+  "headers": ["ATtiny_TimerInterrupt.h", "ATtiny_TimerInterrupt.hpp", "ATtiny_ISR_Timer.h", "ATtiny_ISR_Timer.hpp"]
+}
