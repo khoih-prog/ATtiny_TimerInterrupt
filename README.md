@@ -255,8 +255,10 @@ Check the new [**multiFileProject** example](examples/multiFileProject) for a `H
 1. [Arduino 101: Timers and Interrupts](https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072)
 2. [Getting Started with Timer/Counter Type B (TCB)](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ApplicationNotes/ApplicationNotes/TB3214-Getting-Started-with-TCB-DS90003214.pdf)
 3. [megaTinyCore README.md](https://github.com/SpenceKonde/megaTinyCore/blob/master/README.md)
-4. [AVR128DA48-Curiosity-Nano-Hardware-User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/AVR128DA48-Curiosity-Nano-UG-DS50002971B.pdf)
-5. [AVR128DB48-Curiosity-Nano-Hardware-User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/AVR128DB48-Curiosity-Nano-HW-UserG-DS50003037A.pdf)
+4. [ATtiny3217 Curiosity Nano Hardware User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/40002193A.pdf)
+5. [AVR128DA48-Curiosity-Nano-Hardware-User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/AVR128DA48-Curiosity-Nano-UG-DS50002971B.pdf)
+6. [AVR128DB48-Curiosity-Nano-Hardware-User Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/AVR128DB48-Curiosity-Nano-HW-UserG-DS50003037A.pdf)
+
 
 
 
@@ -264,7 +266,8 @@ Check the new [**multiFileProject** example](examples/multiFileProject) for a `H
 
 TCB0-TCB1 are 16-bit timers
 
-The ATtiny boards with 14, 20, 28 or 32 pins, such as `ATtiny3217`, will have only maximum 2 TCB timers, (TCB0-TCB1).
+The ATtiny boards, such as `ATtiny3217`, `ATtiny1617`, will have only maximum 2 TCB timers, (TCB0-TCB1).
+The ATtiny boards, such as `ATtiny817`, will have only maximum 1 TCB timer, (TCB0).
 
 The number of TCB timers will be automatically configured by the library.
 
@@ -289,8 +292,8 @@ Before using any Timer, you have to make sure the Timer has not been used by any
 #define USING_250KHZ          false         // Not supported now
 
 // Try to use RTC, TCA0 or TCD0 for millis()
-#define USE_TIMER_0           false         // Check if used by millis(), Servo or tone()
-#define USE_TIMER_1           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_0           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_1           false         // Check if used by millis(), Servo or tone()
 
 #if USE_TIMER_0
   #define CurrentTimer   ITimer0
@@ -416,8 +419,8 @@ The 16 ISR_based Timers, designed for long timer intervals, only support using *
 #define USING_250KHZ          false         // Not supported now
 
 // Try to use RTC, TCA0 or TCD0 for millis()
-#define USE_TIMER_0           false         // Check if used by millis(), Servo or tone()
-#define USE_TIMER_1           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_0           true          // Check if used by millis(), Servo or tone()
+#define USE_TIMER_1           false         // Check if used by millis(), Servo or tone()
 
 #if USE_TIMER_0
   #define CurrentTimer   ITimer0
@@ -519,7 +522,7 @@ void setup()
 
 ### Example [ISR_16_Timers_Array_Complex](examples/ISR_16_Timers_Array_Complex)
 
-https://github.com/khoih-prog/ATtiny_TimerInterrupt/blob/bb76ba25917507432c4c03626229ab4912a442f0/examples/ISR_16_Timers_Array_Complex/ISR_16_Timers_Array_Complex.ino#L16-L376
+https://github.com/khoih-prog/ATtiny_TimerInterrupt/blob/e844b26a8ef72e9d91c47f963f61ca01fee7fc18/examples/ISR_16_Timers_Array_Complex/ISR_16_Timers_Array_Complex.ino#L16-L376
 
 
 ---
@@ -535,7 +538,7 @@ While software timer, **programmed for 2s, is activated after more than 10.000s 
 
 ```
 Starting ISR_16_Timers_Array_Complex on AVR_CuriosityNano3217
-ATtiny_TimerInterrupt v1.0.0
+ATtiny_TimerInterrupt v1.0.1
 CPU Frequency = 20 MHz
 TCB Clock Frequency = Full clock (20/16MHz, etc) for highest accuracy
 Starting  ITimer OK, millis() = 13
@@ -605,7 +608,7 @@ Timer : 15, programmed : 80000, actual : 79997
 
 ```
 Starting ISR_16_Timers_Array_Complex on AVR_CuriosityNano3217
-ATtiny_TimerInterrupt v1.0.0
+ATtiny_TimerInterrupt v1.0.1
 CPU Frequency = 20 MHz
 TCB Clock Frequency = Full clock (20/16MHz, etc) for highest accuracy
 Starting  ITimer OK, millis() = 13
@@ -671,7 +674,7 @@ Timer : 15, programmed : 80000, actual : 79997
 
 ```
 Starting ISR_16_Timers_Array_Complex on AVR_CuriosityNano3217
-ATtiny_TimerInterrupt v1.0.0
+ATtiny_TimerInterrupt v1.0.1
 CPU Frequency = 20 MHz
 TCB Clock Frequency = Half clock (10/8MHz, etc.) for high accuracy
 Starting  ITimer OK, millis() = 13
@@ -737,7 +740,7 @@ The following is the sample terminal output when running example [Change_Interva
 
 ```
 Starting Change_Interval_HF on AVR_CuriosityNano3217
-ATtiny_TimerInterrupt v1.0.0
+ATtiny_TimerInterrupt v1.0.1
 CPU Frequency = 20 MHz
 TCB Clock Frequency = Full clock (20/16MHz, etc) for highest accuracy
 Starting ITimer OK, millis() = 13
@@ -829,6 +832,8 @@ Submit issues to: [ATtiny_TimerInterrupt issues](https://github.com/khoih-prog/A
  8. Improve and customize examples for `Curiosity Nano AVRDA/AVRDB` boards to use on-board LED and SW
  9. Add notes `howto upload by drag-and-drop` to `CURIOSITY` virtual drive
 10. Using Serial for debugging with `AVR_CuriosityNano3217`
+11. Default to use `TCB0` in examples for boards having only 1 TCB Timer, such as `ATtiny817`, `ATtiny807`
+12. Fix bug giving error when using TCB0 (`USE_TIMER_0 == true`)
 
 ---
 ---
