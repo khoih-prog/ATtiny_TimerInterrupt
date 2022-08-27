@@ -30,7 +30,7 @@
 * [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix-multiple-definitions-linker-error)
 * [More useful Information](#more-useful-information)
   * [1. Documents](#1-documents)
-  * [2. Timer TCB0-TCB4](#2-timer-tcb0-tcb4)
+  * [2. Timer TCB0-TCB1](#2-timer-tcb0-tcb1)
 * [Usage](#usage)
   * [1. Using only Hardware Timer directly](#1-using-only-hardware-timer-directly)
     * [1.1 Init Hardware Timer](#11-init-hardware-timer)
