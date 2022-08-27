@@ -267,6 +267,7 @@ Check the new [**multiFileProject** example](examples/multiFileProject) for a `H
 TCB0-TCB1 are 16-bit timers
 
 The ATtiny boards, such as `ATtiny3217`, `ATtiny1617`, will have only maximum 2 TCB timers, (TCB0-TCB1).
+
 The ATtiny boards, such as `ATtiny817`, will have only maximum 1 TCB timer, (TCB0).
 
 The number of TCB timers will be automatically configured by the library.
