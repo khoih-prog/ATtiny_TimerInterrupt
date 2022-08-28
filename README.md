@@ -130,22 +130,19 @@ After drag-and-drop the `Change_Interval.ino.hex` into `CURIOSITY` virtual drive
 
 ### Features
 
-This library enables you to use Interrupt from Hardware Timers on Arduino AVR ATtiny-based boards (ATtiny3217, etc.) using megaTinyCore
+This library enables you to use Interrupt from Hardware Timers on Arduino AVR ATtiny-based boards (ATtiny3217, etc.) using using [**megaTinyCore**](https://github.com/SpenceKonde/megaTinyCore)
 
-As **Hardware Timers are rare, and very precious assets** of any board, this library now enables you to use up to **16 ISR-based Timers, while consuming only 1 Hardware Timer**. Timers' interval is very long (**ulong millisecs**).
+As **Hardware Timers are rare, and very precious assets** of any board, this library now enables you to use up to **16 ISR-based Timers, while consuming only 1 Hardware Timer**. Timers' interval is very long (**uint64_t millisecs**).
 
-Now with these new **16 ISR-based timers**, the maximum interval is **practically unlimited** (limited only by unsigned long miliseconds) while **the accuracy is nearly perfect** compared to software timers. 
+Now with these new **16 ISR-based timers**, the maximum interval is **practically unlimited** (limited only by `uint64_t` miliseconds) while **the accuracy is nearly perfect** compared to software timers. 
 
-The most important feature is they're ISR-based timers. Therefore, their executions are **not blocked by bad-behaving functions / tasks**. This important feature is absolutely necessary for mission-critical tasks. 
-
-The [**ISR_16_Timers_Array_Complex**](examples/ISR_16_Timers_Array_Complex) example will demonstrate the nearly perfect accuracy compared to software timers by printing the actual elapsed millisecs of each type of timers.
-
-Being ISR-based timers, their executions are not blocked by bad-behaving functions / tasks, such as connecting to WiFi, Internet and Blynk services. You can also have many `(up to 16)` timers to use.
+The most important feature is they're ISR-based timers. Therefore, their executions are **not blocked by bad-behaving functions / tasks**, such as connecting to WiFi, Internet and Blynk services. This important feature is absolutely necessary for mission-critical tasks. You can also have many `(up to 16)` timers to use.
 
 This non-being-blocked important feature is absolutely necessary for mission-critical tasks.
 
-You'll see blynkTimer Software is blocked while system is connecting to WiFi / Internet / Blynk, as well as by blocking task 
-in loop(), using delay() function as an example. The elapsed time then is very unaccurate
+The [**ISR_16_Timers_Array_Complex**](examples/ISR_16_Timers_Array_Complex) example will demonstrate the nearly perfect accuracy compared to software timers by printing the actual elapsed millisecs of each type of timers.
+
+You'll see `software-based` SimpleTimer is blocked while system is connecting to WiFi / Internet / Blynk, as well as by blocking task in loop(), using delay() function as an example. The elapsed time then is very unaccurate
 
 ### Why using ISR-based Hardware Timer Interrupt is better
 
@@ -157,11 +154,11 @@ You'd prefer to have your function called, no matter what happening with other f
 
 The correct choice is to use a **Hardware Timer with Interrupt** to call your function.
 
-**These hardware timers, using interrupt**, still work even if other functions are blocking. Moreover, they are **much more precise** (certainly depending on clock frequency accuracy) than other software timers using millis() or micros(). That's necessary if you need to measure some data requiring better accuracy.
+**These hardware timers, using interrupt**, still work even if other functions are blocking. Moreover, they are **much more precise** (certainly depending on clock frequency accuracy) than other software timers using `millis()` or `micros()`. That's necessary if you need to measure some data requiring better accuracy.
 
-Functions using normal software timers, relying on loop() and calling millis(), won't work if the loop() or setup() is blocked by certain operation. For example, certain function is blocking while it's connecting to WiFi or some services.
+Functions using normal software timers, relying on `loop()` and calling `millis()`, won't work if the loop() or setup() is blocked by certain operation. For example, certain function is blocking while it's connecting to WiFi or some services.
 
-The catch is your function is now part of an ISR (Interrupt Service Routine), and must be lean / mean, and follow certain rules. More to read on:
+The catch is **your function is now part of an ISR (Interrupt Service Routine), and must be lean / mean, and follow certain rules.** More to read on:
 
 [**HOWTO Attach Interrupt**](https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
 
@@ -174,6 +171,8 @@ The catch is your function is now part of an ISR (Interrupt Service Routine), an
 ### Currently supported Boards
 
 - **tinyAVR boards using megaTinyCore**
+
+##### Curiosity Nano ATtiny3217
 
 <p align="center">
     <img src="https://github.com/khoih-prog/ATtiny_TimerInterrupt/blob/main/pics/Curiosity_ATtiny3217.png">
@@ -261,7 +260,6 @@ Check the new [**multiFileProject** example](examples/multiFileProject) for a `H
 
 
 
-
 ### 2. Timer TCB0-TCB1
 
 TCB0-TCB1 are 16-bit timers
@@ -271,6 +269,20 @@ The ATtiny boards, such as `ATtiny3217`, `ATtiny1617`, will have only maximum 2 
 The ATtiny boards, such as `ATtiny817`, will have only maximum 1 TCB timer, (TCB0).
 
 The number of TCB timers will be automatically configured by the library.
+
+The following is the partial list of number of TCBs for each ATtiny board/chip
+
+#### TCB0-TCB1, TCA, TCD
+
+**ATtiny3217, ATtiny1617, ATtiny3216, ATtiny1616, ATtiny1614**
+
+#### TCB0, TCA, TCD
+
+**ATtinyx12, ATtinyx14, ATtinyx16, ATtinyx17, such as ATtiny817, ATtiny417, ATtiny816, etc.**
+
+#### TCB0, TCA, no TCD
+
+**ATtinyx02, ATtinyx04, ATtinyx06, ATtinyx07, such as ATtiny1607, ATtiny807, ATtiny1606, etc.**
 
 ---
 ---
@@ -830,7 +842,7 @@ Submit issues to: [ATtiny_TimerInterrupt issues](https://github.com/khoih-prog/A
  6. Selectable **TCB Clock FULL, HALF** depending on necessary accuracy
  6. Fix `multiple-definitions` linker error
  7. Optimize library code by using `reference-passing` instead of `value-passing`
- 8. Improve and customize examples for `Curiosity Nano AVRDA/AVRDB` boards to use on-board LED and SW
+ 8. Improve and customize examples for `AVR_CuriosityNano3217` boards to use on-board LED and SW
  9. Add notes `howto upload by drag-and-drop` to `CURIOSITY` virtual drive
 10. Using Serial for debugging with `AVR_CuriosityNano3217`
 11. Default to use `TCB0` in examples for boards having only 1 TCB Timer, such as `ATtiny817`, `ATtiny807`
@@ -843,7 +855,7 @@ Submit issues to: [ATtiny_TimerInterrupt issues](https://github.com/khoih-prog/A
 
 Many thanks for everyone for bug reporting, new feature suggesting, testing and contributing to the development of this library. Especially to these people who have directly or indirectly contributed to this [ATtiny_TimerInterrupt library](https://github.com/khoih-prog/ATtiny_TimerInterrupt)
 
-1. Thanks to good work of [Spence Konde (aka Dr. Azzy)](https://github.com/SpenceKonde) for the [DxCore](https://github.com/SpenceKonde/DxCore) and [megaTinyCore](https://github.com/SpenceKonde/megaTinyCore)
+1. Thanks to good work of [Spence Konde (aka Dr. Azzy)](https://github.com/SpenceKonde) for the [megaTinyCore](https://github.com/SpenceKonde/megaTinyCore)
 2. Thanks to [LaurentR59](https://github.com/LaurentR59) to request the enhancement [Support for DX CORE CPU and MightyCORE CPU possible? #8](https://github.com/khoih-prog/TimerInterrupt_Generic/issues/8) leading to this new library
 
 <table>
