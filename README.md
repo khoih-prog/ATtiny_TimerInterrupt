@@ -115,7 +115,7 @@ For example, to run [Change_Interval example](https://github.com/khoih-prog/ATti
 </p>
 
 
-After drag-and-drop the `Change_Interval.ino.hex` into `CURIOSITY` virtual drive, the code will run immidiately if successfully loaded (LED blinks **slowly**)
+After drag-and-drop the `Change_Interval.ino.hex` into `CURIOSITY` virtual drive, the code will run immediately if successfully loaded (LED blinks **slowly**)
 
 
 <p align="center">
@@ -134,7 +134,7 @@ This library enables you to use Interrupt from Hardware Timers on Arduino AVR AT
 
 As **Hardware Timers are rare, and very precious assets** of any board, this library now enables you to use up to **16 ISR-based Timers, while consuming only 1 Hardware Timer**. Timers' interval is very long (**uint64_t millisecs**).
 
-Now with these new **16 ISR-based timers**, the maximum interval is **practically unlimited** (limited only by `uint64_t` miliseconds) while **the accuracy is nearly perfect** compared to software timers. 
+Now with these new **16 ISR-based timers**, the maximum interval is **practically unlimited** (limited only by `uint64_t` milliseconds) while **the accuracy is nearly perfect** compared to software timers. 
 
 The most important feature is they're ISR-based timers. Therefore, their executions are **not blocked by bad-behaving functions / tasks**, such as connecting to WiFi, Internet and Blynk services. This important feature is absolutely necessary for mission-critical tasks. You can also have many `(up to 16)` timers to use.
 
